@@ -37,41 +37,41 @@ public class Loop {
     }
 
     public Node findStartOfLoop(){
-        Node fast, slow;
-        fast = slow = head;
-        boolean loopFlag = false;
-        // to check for loop
+        Node slow =head, fast = head;
+        boolean flag =false;
+
         while(slow != null && fast != null && fast.next != null){
-            fast = fast.next.next;
+
             slow = slow.next;
-            if(fast == slow){
-                loopFlag = true;
+            fast =fast.next.next;
+
+            if(slow == fast){
+                flag =true;
+                System.out.println("Loop detected at :"+slow.i);
                 break;
             }
         }
-        // Find start of the loop
-        if(loopFlag){
-            System.out.println("Loop detected in liked list, finding start of the loop..");
-            slow = head;
-            while(slow != fast){
-                slow = slow.next;
-                fast = fast.next;
+        if(flag){
+            slow =head;
+            while (fast.next != null){
+                slow =slow.next;
+                fast =fast.next;
+
+                if(slow == fast){
+                    return  fast;
+                }
             }
-        }else{
-            System.out.println("No Loop detected in the linkedlist");
-            fast = null;
         }
-        return fast;
+        return  fast;
     }
 
     public void removeLoop(Node startNode){
-        Node fast, slow;
-        fast = slow = startNode;
-
-        while(fast.next != slow){
-            fast = fast.next;
+        Node slow =startNode;
+        while (slow.next != startNode){
+            slow = slow.next;
         }
-        fast.next = null;
+        slow.next = null;
+
     }
 
     // Method to traverse and display all nodes
