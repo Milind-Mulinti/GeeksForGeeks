@@ -73,6 +73,27 @@ public class Loop {
         slow.next = null;
 
     }
+        public static int countNodesinLoop(Node head)
+    {
+        Node slow =head;
+        Node fast = head.next;
+
+        while ((slow != fast)){
+
+            if(fast.next == null || fast.next.next == null ) return 0;
+
+            slow =slow.next;
+            fast =fast.next.next;
+        }
+        int counter =1;
+        fast = fast.next;
+
+        while (fast != slow){
+            fast = fast.next;
+            counter++;
+        }
+        return counter;
+    }
 
     // Method to traverse and display all nodes
     public void displayList(){
@@ -84,8 +105,9 @@ public class Loop {
     }
     public static void main(String[] args) {
         Loop list = new Loop();
+        Node head = new Node(10);
         Node node = new Node(30);
-        list.insertLast(new Node(10));
+        list.insertLast(head);
         list.insertLast(new Node(20));
         list.insertLast(node);
         list.insertLast(new Node(40));
@@ -93,9 +115,10 @@ public class Loop {
         // same node inserted again to create loop
         list.insertLast(node);
 
-        Node loopStartNode = list.findStartOfLoop();
-        System.out.println("Start node of the loop- " + loopStartNode.i);
-        list.removeLoop(loopStartNode);
-        list.displayList();
+       // Node loopStartNode = list.findStartOfLoop();
+      //  System.out.println("Start node of the loop- " + loopStartNode.i);
+        int counts = Loop.countNodesinLoop(head);
+        System.out.println("counts : " +counts);
+      //  list.displayList();
     }
 }
