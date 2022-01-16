@@ -16,6 +16,12 @@ public class MiddleNode {
         prev.next = slow.next;
         return head;
     }
+
+    // practice to check knowledge
+    public static Node deleteMiddleTest(Node head){
+
+        return null;
+    }
     public static void displayList(Node head){
         Node current = head;
         while(current != null){
